@@ -60,7 +60,8 @@ namespace idealGasCalculator
             //display gas names, 3 by line. Not sure how to format this properly, was having trouble with it.
             for (int i = 0; i < 82; i += 3)
             {
-                Console.WriteLine($"{gasNames[i]}, {gasNames[i + 1]}, {gasNames[i + 2]}");
+                // GLENN: See below for formatting
+                Console.WriteLine($"{gasNames[i], -25}{gasNames[i + 1], -25}{gasNames[i + 2], -25}");
             }
         }
 
@@ -73,6 +74,7 @@ namespace idealGasCalculator
             while (checkUserInput == false)
             {
                 //get user input for name of gas and check if gas is valid input
+                // GLENN: Per spec, these two lines should be in Main(), what you can do is return a value like -1 if the user input was invalid
                 Console.WriteLine("What gas would you like to choose?");
                 gasName = Console.ReadLine();
                 if (gasNames.Contains(gasName))
@@ -98,6 +100,7 @@ namespace idealGasCalculator
         {
             //get weight from user and calculate value of n
             Console.WriteLine("What is the weight of the gas in grams?");
+            // GLENN: Per spec, ReadLine should be Main()
             double v = Convert.ToDouble(Console.ReadLine());
             mass = v;
 
@@ -109,6 +112,7 @@ namespace idealGasCalculator
         {
             //get temperature in kelvin from celsius
             Console.WriteLine("What is the temperature of the gas in degrees Celsius");
+            // GLENN: Per spec, ReadLine should be Main()
             double temp = Convert.ToDouble(Console.ReadLine());
 
             double tempKelvin = temp + 273.15;
@@ -122,6 +126,7 @@ namespace idealGasCalculator
             double RCONSTANT = 8.3145;
             //get volume from user of container and calculate pressure/write to console
             Console.WriteLine($"What is the volumn in cubic meters of the container?");
+            // GLENN: Per spec, ReadLine should be Main()
             vol = Convert.ToDouble(Console.ReadLine());
 
             double pressure = (NumberOfMoles(mass, molecularWeight) * RCONSTANT * CelsiusToKelvin(temp)) / vol;
@@ -177,6 +182,7 @@ namespace idealGasCalculator
                 Console.WriteLine("Would you like to calculate another gas? yes or no");
                 string userAnswer = Console.ReadLine();
                 if (userAnswer == "yes")
+                // GLENN: Be careful, use String.Equals(...), or another.Equals(...) to compare strings.
                 {
                     answer = true;
                 }
